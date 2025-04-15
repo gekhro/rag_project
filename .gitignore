@@ -74,6 +74,8 @@ output/*
 # Large data files
 *.csv
 !data/mbpp_text_code_augmented.jsonl
+!data/train_final.jsonl
+!data/test_final.jsonl
 
 # Model checkpoints
 *.pt
