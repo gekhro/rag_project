@@ -79,3 +79,6 @@ output/*
 # Model checkpoints
 *.pt
 *.bin 
+
+# Log files
+*.log

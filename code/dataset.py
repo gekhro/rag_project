@@ -20,8 +20,8 @@ class CodeTextDataset(Dataset):
             text = item["transformed_text"]
             code = item["transformed_code"]
         else:
-            text = item["original_text"]
-            code = item["original_code"]
+            text = item["text"]
+            code = item["code"]
 
         # Create a positive pair example
         return InputExample(texts=[text, code])
