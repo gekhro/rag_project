@@ -2,11 +2,11 @@
 #SBATCH --job-name=torch-gpu-job        # Job name
 #SBATCH --output=logs/output_%j.log     # Output log (%j = job ID)
 #SBATCH --error=logs/error_%j.log       # Error log
-#SBATCH --partition=normal               # Request the GPU partition (name may vary)
-#SBATCH --gpus                 # Request 1 GPU
+#SBATCH --partition=gpu           # Request the GPU partition (name may vary)
+#SBATCH --gpus=1                 # Request 1 GPU
 #SBATCH --cpus-per-task=4               # Number of CPU cores
 #SBATCH --mem=64G                       # Memory
-#SBATCH --time=10:00:00                 # Max wall time (hh:mm:ss)
+#SBATCH --time=4:00:00                 # Max wall time (hh:mm:ss)
 #SBATCH --mail-type=BEGIN,END,FAIL
 #SBATCH --mail-user=ryo_seah@u.nus.edu
 
@@ -17,8 +17,8 @@
 # source ~/miniconda3/bin/activate myenv
 
 echo "Running on $(hostname)"
-source ~/codequery/venv/bin/activate
+source ~/rag_project/venv/bin/activate
 nvidia-smi
 
 # Run your script
-python code/main.py
+python code/main.py 
