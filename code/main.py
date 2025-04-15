@@ -12,11 +12,12 @@ from eval import evaluate_retrieval
 
 os.makedirs("output", exist_ok=True)
 
-def load_test_data(data_path, test_ratio=0.1, random_seed=42):
+def load_test_data(data_path, test_ratio=0, random_seed=42):
     """Load data and split into train/test sets"""
     with open(data_path) as f:
         data = [json.loads(line) for line in f]
-
+    if test_ratio == 0:
+        return data, {}
     # Split into train and test sets
     test_size = int(len(data) * test_ratio)
     train_size = len(data) - test_size
@@ -108,14 +109,15 @@ def main():
     model_name = "BAAI/bge-base-en"
 
     # Path to the MBPP dataset
-    data_path = "~/rag_project/data/cleaned_augmented_final_data.jsonl"
+    train_path = "~/rag_project/data/train_final.jsonl"
+    test_path = "~/rag_project/data/test_final.jsonl"
 
     # Split data into train and test sets
-    train_data, test_data = load_test_data(data_path)
+    test_data, _ = load_test_data(test_path)
     print(f"Loaded {len(train_data)} training examples and {len(test_data)} test examples")
 
     # Create dataset for training
-    train_dataset = CodeTextDataset(data_path, use_transformed=False)
+    train_dataset = CodeTextDataset(train_path, use_transformed=False)
 
     # Create baseline model
     baseline_model = create_baseline_model(model_name)

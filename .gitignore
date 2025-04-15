@@ -73,7 +73,6 @@ output/*
 
 # Large data files
 *.csv
-*.jsonl
 !data/mbpp_text_code_augmented.jsonl
 
 # Model checkpoints
